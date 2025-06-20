@@ -21,7 +21,7 @@ jobs:
           node-version: '20'  # Změň na verzi, kterou používáš
 
       - name: Instalace závislostí
-        run: npm install
+        run: npm install --legacy-peer-deps --force
 
       - name: Build
         run: npm run build
