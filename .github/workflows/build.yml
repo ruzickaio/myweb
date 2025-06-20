@@ -1,0 +1,33 @@
+# .github/workflows/build.yml
+
+name: Build web
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout kódu
+        uses: actions/checkout@v4
+
+      - name: Nastavení Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # Změň na verzi, kterou používáš
+
+      - name: Instalace závislostí
+        run: npm install
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artefaktu (volitelné)
+        uses: actions/upload-artifact@v4
+        with:
+          name: postaveny-web
+          path: dist  # nebo jiná výstupní složka
